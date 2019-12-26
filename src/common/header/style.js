@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import logoPic from '../../statics/logo.png'
-import VipImg from '../../statics/vip.png'
 
 export const HeaderWrapper = styled.div`
   height: 56px;
   border-bottom: 1px solid #f0f0f0;
 `;
+
 export const Logo = styled.a.attrs({
   href: '/'
 })`
@@ -52,8 +52,21 @@ export const NavVip = styled.img.attrs({
   display: block;
   height: 25px
   width: 56.81px;
-  // background: url(${VipImg});
   background-size: contain;
+`;
+
+export const SearWrapper = styled.div`
+  position: relative;
+  float: left;
+  .iconfont {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    text-align: center;
+  }
 `;
 
 export const NavSearch = styled.input.attrs({
