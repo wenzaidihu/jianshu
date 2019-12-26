@@ -58,6 +58,18 @@ export const NavVip = styled.img.attrs({
 export const SearWrapper = styled.div`
   position: relative;
   float: left;
+  .slide-enter {
+		transition: all .2s ease-out;
+	}
+	.slide-enter-active {
+		width: 240px;
+	}
+	.slide-exit {
+		transition: all .2s ease-out;
+	}
+	.slide-exit-active {
+		width: 160px;
+	}
   .iconfont {
     position: absolute;
     right: 5px;
