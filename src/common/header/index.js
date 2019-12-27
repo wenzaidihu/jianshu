@@ -18,18 +18,20 @@ import {
   SearchInfoList,
   SearchInfoItem
 } from './style';
-import { bindActionCreators } from 'redux';
 
 class Header extends Component {
 
   getListArea () {
-    const { focused, list, page, mouseIn, handleMouseEnter, handleMouseLeave } = this.props;
+    const { focused, list, page, totalPage, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
     const newList = list.toJS();
     const pageList = [];
-    for (let i = (page-1)*10; i < page*10; i++) {
-      pageList.push(
-        <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
-      )
+    
+    if (newList.length) {
+      for (let i = (page-1)*10; i < page*10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
     }
 
     if (focused || mouseIn) {
@@ -40,7 +42,7 @@ class Header extends Component {
         >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
@@ -101,6 +103,7 @@ const mapStateToProps = (state) => {
     focused: state.getIn(['header','focused']),
     list: state.getIn(['header','list']),
     page: state.getIn(['header','page']),
+    totalPage: state.getIn(['header','totalPage']),
     mouseIn: state.getIn(['header','mouseIn'])
   }
 }
@@ -119,6 +122,13 @@ const mapDispathToProps = (dispatch) => {
     },
     handleMouseLeave() {
       dispatch(actionCreators.mouseLeave());
+    },
+    handleChangePage(page, totalpage) {
+      if (page < totalpage) {
+        dispatch(actionCreators.changePage(page + 1));
+      }else {
+        dispatch(actionCreators.changePage(1));
+      }
     }
   }
 }
