@@ -4,7 +4,8 @@ import { fromJS } from 'immutable';
 
 const changeList = (data) => ({
   type: constants.CHANGE_LIST,
-  data: fromJS(data)
+  data: fromJS(data),
+  totalPag: Math.ceil(data.length / 10)
 });
 
 export const searchFocus = () => ({
