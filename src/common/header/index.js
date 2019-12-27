@@ -23,7 +23,7 @@ import { bindActionCreators } from 'redux';
 class Header extends Component {
 
   getListArea () {
-    const { focused, list, page } = this.props;
+    const { focused, list, page, mouseIn, handleMouseEnter, handleMouseLeave } = this.props;
     const newList = list.toJS();
     const pageList = [];
     for (let i = (page-1)*10; i < page*10; i++) {
@@ -32,9 +32,12 @@ class Header extends Component {
       )
     }
 
-    if (focused) {
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <SearchInfoTitle>
             热门搜索
             <SearchInfoSwitch>
@@ -98,6 +101,7 @@ const mapStateToProps = (state) => {
     focused: state.getIn(['header','focused']),
     list: state.getIn(['header','list']),
     page: state.getIn(['header','page']),
+    mouseIn: state.getIn(['header','mouseIn'])
   }
 }
 
@@ -109,6 +113,12 @@ const mapDispathToProps = (dispatch) => {
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur());
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter());
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave());
     }
   }
 }
