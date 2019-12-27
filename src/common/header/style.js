@@ -48,9 +48,9 @@ export const NavVip = styled.img.attrs({
   src: '//cdn2.jianshu.io/assets/web/nav_jsds_beta-eeb44d165b8ba37680fdb7e65ae17ae4.png'
 })`
   float: right;
-  padding: 15px 0px
+  padding: 15px 0px;
   display: block;
-  height: 25px
+  height: 25px;
   width: 56.81px;
   background-size: contain;
 `; 
@@ -106,6 +106,56 @@ export const NavSearch = styled.input.attrs({
 	&.slide-exit-active {
 		width: 160px;
 	}
+`;
+
+export const SearchInfo = styled.div`
+	position: absolute;
+	left: 0;
+	top: 56px;
+	width: 240px;
+	padding: 0 20px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+	background: #fff;
+`;
+
+export const SearchInfoTitle = styled.div`
+	margin-top: 20px;
+	margin-bottom: 15px;
+	line-height: 20px;
+	font-size: 14px;
+	color: #969696;
+`;
+
+export const SearchInfoSwitch = styled.span`
+	float: right;
+	font-size: 13px;
+	cursor: pointer;
+	.spin {
+		display: block;
+		float: left;
+		font-size: 12px;
+		margin-right: 2px;
+		transition: all .2s ease-in;
+		transform-origin: center center;
+	}
+`;
+
+
+export const SearchInfoList = styled.div`
+	overflow: hidden;
+`;
+
+export const SearchInfoItem = styled.a`
+	display: block;
+	float: left;
+	line-height: 20px;
+	padding: 0 5px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+	font-size: 12px;
+	border: 1px solid #ddd;
+	color: #787878;
+	border-radius: 3px;
 `;
 
 export const AddItion = styled.div`
