@@ -22,8 +22,8 @@ import { bindActionCreators } from 'redux';
 
 class Header extends Component {
 
-  getListArea (show) {
-    if (show) {
+  getListArea () {
+    if (this.props.focused) {
       return (
         <SearchInfo>
           <SearchInfoTitle>
@@ -33,12 +33,11 @@ class Header extends Component {
             </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
-            <SearchInfoItem>教育</SearchInfoItem>
+            {
+              this.props.list.map((item) => {
+              return <SearchInfoItem key={item}>{item}</SearchInfoItem>
+              })
+            }
           </SearchInfoList>
         </SearchInfo>
       )
@@ -46,7 +45,7 @@ class Header extends Component {
       return null;
     }
   }
-  
+
   render() {
     return (
       <HeaderWrapper>
@@ -72,7 +71,7 @@ class Header extends Component {
               ></NavSearch>
             </CSSTransition>
             <span className={this.props.focused ? 'focused iconfont': 'iconfont'}>&#xe6e4;</span>
-            {this.getListArea(this.props.focused)}
+            {this.getListArea()}
           </SearWrapper>
         </Nav>
         <AddItion>
@@ -90,17 +89,19 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    focused: state.get('header').get('focused')
+    focused: state.getIn(['header','focused']),
+    list: state.getIn(['header','list']),
   }
 }
 
-const mapDispathToProps = (dispath) => {
+const mapDispathToProps = (dispatch) => {
   return {
     handleInputFocus() {
-      dispath(actionCreators.searchFocus());
+      dispatch(actionCreators.getList());
+      dispatch(actionCreators.searchFocus());
     },
     handleInputBlur() {
-      dispath(actionCreators.searchBlur());
+      dispatch(actionCreators.searchBlur());
     }
   }
 }
