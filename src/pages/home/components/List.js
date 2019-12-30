@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { ListItem, ListInfo, LoadMore } from '../style';
+import { ListItem, ListInfo } from '../style';
 import { connect } from 'react-redux';
-import { actionCreators } from '../store';
-import { Link } from 'react-router-dom';
 
 class List extends Component {
 	render() {
-		const { list, getMoreList, page } = this.props;
+		const { list } = this.props;
 		return (
 			<div>
 				{
