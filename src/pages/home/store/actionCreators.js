@@ -13,6 +13,16 @@ export const getHomeInfo = () => {
 		axios.get('/api/home.json').then((res) => {
 			const result = res.data.data;
       dispatch(changHomeData(result));
-		})
+		});
+	}
+}
+
+export const getMoreList = () => {
+	return (dispatch) => {
+		axios.get('/api/homeList.json').then((res) => {
+			const result = res.data.data;
+			// dispatch(addHomeList(result));
+			console.log(result)
+		});
 	}
 }
