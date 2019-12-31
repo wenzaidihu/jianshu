@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 class List extends Component {
 	render() {
-		const { list, getMoreList } = this.props;
+		const { list, getMoreList, page } = this.props;
 		return (
 			<div>
 				{
-				list.map((item) => {
+				list.map((item, index) => {
 					return (
-						<ListItem key={item.get('id')}>
+						<ListItem key={index}>
 							<img alt='' className='pic' src={item.get('imgUrl')} />
 							<ListInfo>
 							<h3 className='title'>{item.get('title')}</h3>
@@ -20,7 +20,7 @@ class List extends Component {
 						);
 					})
 				}
-				<LoadMore onClick={getMoreList}>更多文字</LoadMore>
+				<LoadMore onClick={() => getMoreList(page)}>更多文字</LoadMore>
 			</div>
 		)
 	}
@@ -32,8 +32,8 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-	getMoreList() {
-		dispatch(actionCreators.getMoreList())
+	getMoreList(page) {
+		dispatch(actionCreators.getMoreList(page))
 	}
 })
 
