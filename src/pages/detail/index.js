@@ -4,6 +4,7 @@ import { DetailWrapper, Header, Content } from './style';
 import { actionCreators } from './store';
 class Detail extends PureComponent {
 	render() {
+    console.log(this.props);
 		return (
 			<DetailWrapper>
 				<Header>{this.props.title}</Header>
@@ -12,7 +13,7 @@ class Detail extends PureComponent {
 		)
   }
   componentDidMount() {
-		this.props.getDetail();
+		this.props.getDetail(this.props.match.params.id);
 	}
 }
 
@@ -22,8 +23,8 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-	getDetail() {
-		dispatch(actionCreators.getDetail());
+	getDetail(id) {
+		dispatch(actionCreators.getDetail(id));
 	}
 });
 
