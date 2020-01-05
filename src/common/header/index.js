@@ -76,7 +76,7 @@ class Header extends Component {
 							<Link to='/login'><NavItem className='right'>登录</NavItem></Link>
 					}
           <NavVip>
-            <img className="header-pic"></img>
+            <img className="header-pic" src="http://img.mukewang.com/szimg/5e117375098ba37601000044.jpg"></img>
           </NavVip>
           <NavItem className="right">
             <span className="iconfont">&#xe636;</span>

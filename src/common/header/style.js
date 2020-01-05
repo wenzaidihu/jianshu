@@ -49,8 +49,6 @@ export const NavVip = styled.div`
   .header-pic {
     height: 25px;
     width: 56.81px;
-    background: url(${vipPic});
-    background-size: contain;
   }
 `; 
 
