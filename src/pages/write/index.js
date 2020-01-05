@@ -12,16 +12,16 @@ class Write extends PureComponent {
 	}
 
 	initState = () => {
-		const defaultContent = "<p>This is default <b>content!</b></p>";
-		const defaultTitle = "This is default title";
 		this.state = {
-			title: defaultTitle,
-			editorState: BraftEditor.createEditorState(defaultContent)
+			title: null,
+			editorState: BraftEditor.createEditorState(null)
 		};
 	}
 
-	handleTitleInputChange = () => {
-
+	handleTitleInputChange = event => {
+		this.setState({
+			title: event.target.value
+		});
 	}
 
 	renderTitle = () => {
@@ -32,6 +32,7 @@ class Write extends PureComponent {
 					className="jian-shu-writer-page-editor-title"
 					value={title}
 					onChange={this.handleTitleInputChange}
+					placeholder="请输入文章标题 ……"
 				/>
 			</div>
 		);
@@ -44,6 +45,7 @@ class Write extends PureComponent {
 				contentStyle={{ width: "100%" }}
 				value={editorState}
 				onChange={this.handleEditorChange}
+				placeholder="请输入文章内容 ……"
 				// excludeControls={this.getExcludeControls()}
 				// extendControls={this.getExtendControls()}
 			/>
@@ -65,7 +67,7 @@ class Write extends PureComponent {
 
 	renderPageWithLoginStatus = () => {
 		const { loginStatus } = this.props;
-		if (!loginStatus) return <Redirect to='/login'/>;
+		// if (!loginStatus) return <Redirect to='/login'/>;
 		return this.renderPageWithIsLogin();
 	}
 

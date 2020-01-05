@@ -29,6 +29,46 @@
   padding: 0 15px;
 }
 
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title::-webkit-input-placeholder {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Microsoft YaHei";
+}
+
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title:-moz-placeholder {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Microsoft YaHei";
+}
+
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title::-moz-placeholder {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Microsoft YaHei";
+}
+
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title:-ms-input-placeholder {
+  color: #999;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Microsoft YaHei";
+}
+
 .jian-shu-writer-page-braft-editor-wrapper {
   width: 100%;
 }
