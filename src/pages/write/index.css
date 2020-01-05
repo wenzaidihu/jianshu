@@ -1,0 +1,34 @@
+.jian-shu-writer-page-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper,
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container,
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title {
+  border: 0;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.jian-shu-writer-page-container
+.jian-shu-writer-page-editor-title-wrapper
+.jian-shu-writer-page-editor-title-container
+.jian-shu-writer-page-editor-title {
+  padding: 0 15px;
+}
+
+.jian-shu-writer-page-braft-editor-wrapper {
+  width: 100%;
+}
