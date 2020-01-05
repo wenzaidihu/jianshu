@@ -58,8 +58,7 @@ class Write extends PureComponent {
 		return maxId + 1;
 	}
 
-	getArticleCover = editorState => {
-		const html = editorState.toHTML();
+	getArticleCover = html => {
 		const defaultImgUrl = "http://img.mukewang.com/szimg/5e116f160830985803600240.jpg";
 		const srcList = html.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/gi);
 		if (!srcList) return defaultImgUrl;
@@ -70,7 +69,10 @@ class Write extends PureComponent {
 
 	handlePreview = () => {
     const { title, editorState } = this.state;
-    const html = editorState.toHTML();
+		const html = editorState.toHTML();
+		const text = editorState.toText();
+		if (!title) return alert("文章标题不能为空！");
+		if (!text) return alert("文章内容不能为空！");
     if (window.previewWindow) window.previewWindow.close();
     window.previewWindow = window.open();
     window.previewWindow.document.write(renderPreview(title, html));
@@ -80,8 +82,9 @@ class Write extends PureComponent {
   handleSave = () => {
 		const { history, unshiftItemToArticleList } = this.props;
     const { title, editorState } = this.state;
-		const cover = this.getArticleCover(editorState);
+		const html = editorState.toHTML();
 		const text = editorState.toText();
+		const cover = this.getArticleCover(html);
 		const desc = text.length > 100? text.slice(0, 200): text;
 		if (!title) return alert("文章标题不能为空！");
 		if (!text) return alert("文章内容不能为空！");
@@ -90,6 +93,7 @@ class Write extends PureComponent {
 			imgUrl: cover,
 			title,
 			desc,
+			content: html
 		})
 		history.push("/");
   }
