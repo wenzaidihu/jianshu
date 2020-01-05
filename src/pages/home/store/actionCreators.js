@@ -15,11 +15,18 @@ const addHomeList = (list, nextPage) => ({
 	nextPage
 })
 
+export const unshiftItemToArticleList = item => ({
+	type: constants.UNSHIFT_ITEM_TO_ARTICLE_LIST,
+	item
+})
+
 export const getHomeInfo = () => {
-	return (dispatch) => {
-		axios.get('/api/home.json').then((res) => {
+	return (dispatch, getState) => {
+		const state = getState();
+		const listSize = state.getIn(['home', 'articleList']).size;
+		if (!listSize) axios.get('/api/home.json').then((res) => {
 			const result = res.data.data;
-      dispatch(changHomeData(result));
+			dispatch(changHomeData(result));
 		});
 	}
 }

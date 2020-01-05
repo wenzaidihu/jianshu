@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BraftEditor from 'braft-editor';
 import renderPreview from './Preview';
+import { actionCreators } from '../home/store';
 import 'braft-editor/dist/index.css';
 import './index.css';
 class Write extends PureComponent {
@@ -10,6 +11,7 @@ class Write extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.initState();
+		this.getMaxId();
 	}
 
 	initState = () => {
@@ -49,6 +51,23 @@ class Write extends PureComponent {
     }];
 	}
 
+	getMaxId = () => {
+		const { articleList } = this.props;
+		const ids = articleList.toJS().map(item => item.id);
+		const maxId = Math.max(...ids);
+		return maxId + 1;
+	}
+
+	getArticleCover = editorState => {
+		const html = editorState.toHTML();
+		const defaultImgUrl = "http://img.mukewang.com/szimg/5e116f160830985803600240.jpg";
+		const srcList = html.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/gi);
+		if (!srcList) return defaultImgUrl;
+		const imgUrls = srcList.map(item => item.slice(5, -1));
+		const imgUrl = imgUrls[0]? imgUrls[0]: defaultImgUrl;
+		return imgUrl;
+	}
+
 	handlePreview = () => {
     const { title, editorState } = this.state;
     const html = editorState.toHTML();
@@ -59,10 +78,20 @@ class Write extends PureComponent {
   }
 
   handleSave = () => {
+		const { history, unshiftItemToArticleList } = this.props;
     const { title, editorState } = this.state;
-    const html = editorState.toHTML();
-    console.log("submitContent title:", title);
-    console.log("submitContent html:", html);
+		const cover = this.getArticleCover(editorState);
+		const text = editorState.toText();
+		const desc = text.length > 100? text.slice(0, 200): text;
+		if (!title) return alert("文章标题不能为空！");
+		if (!text) return alert("文章内容不能为空！");
+		unshiftItemToArticleList({
+			id: this.getMaxId(),
+			imgUrl: cover,
+			title,
+			desc,
+		})
+		history.push("/");
   }
 	
 	handleTitleInputChange = event => {
@@ -120,7 +149,7 @@ class Write extends PureComponent {
 
 	renderPageWithLoginStatus = () => {
 		const { loginStatus } = this.props;
-		// if (!loginStatus) return <Redirect to='/login'/>;
+		if (!loginStatus) return <Redirect to='/login'/>;
 		return this.renderPageWithIsLogin();
 	}
 
@@ -130,7 +159,14 @@ class Write extends PureComponent {
 }
 
 const mapState = (state) => ({
-	loginStatus: state.getIn(['login', 'login'])
+	articleList: state.getIn(['home', 'articleList']),
+	loginStatus: state.getIn(['login', 'login']),
 })
 
-export default connect(mapState, null)(Write);
+const mapDispatch = (dispatch) => ({
+	unshiftItemToArticleList(item) {
+		dispatch(actionCreators.unshiftItemToArticleList(item))
+	}
+})
+
+export default connect(mapState, mapDispatch)(Write);
