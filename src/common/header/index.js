@@ -3,7 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
-import { actionCreators as loginActionCreators } from '../../pages/login/store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store';
+import vipPic from '../../statics/vip.png'
 import {
   HeaderWrapper,
   Logo,
@@ -74,7 +75,9 @@ class Header extends Component {
 							<NavItem className='right' onClick={logout}>退出</NavItem> : 
 							<Link to='/login'><NavItem className='right'>登录</NavItem></Link>
 					}
-          <NavVip></NavVip>
+          <NavVip>
+            <img className="header-pic"></img>
+          </NavVip>
           <NavItem className="right">
             <span className="iconfont">&#xe636;</span>
           </NavItem>

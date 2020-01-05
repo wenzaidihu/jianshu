@@ -35,7 +35,7 @@ export const TopicItem = styled.div`
 	line-height: 32px;
 	margin-left: 18px;
 	margin-bottom: 18px;
-	padding-right: 10px
+	padding-right: 10px;
 	background: #f7f7f7;
 	font-size: 14px;
 	color: #000;
@@ -87,7 +87,7 @@ export const RecommendWrapper = styled.div`
 export const RecommendItem = styled.div`
 	width: 280px;
 	height: 50px;
-	background: url(${(props) => props.imgUrl});
+	background-image: url(${(props) => props.imgUrl});
 	background-size: contain;
 `;
 

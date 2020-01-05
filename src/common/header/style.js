@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import logoPic from '../../statics/logo.png'
+import vipPic from '../../statics/vip.png'
 
 export const HeaderWrapper = styled.div`
   height: 56px;
@@ -42,15 +43,15 @@ export const NavItem = styled.div`
   }
 `;
 
-export const NavVip = styled.img.attrs({
-  src: '//cdn2.jianshu.io/assets/web/nav_jsds_beta-eeb44d165b8ba37680fdb7e65ae17ae4.png'
-})`
+export const NavVip = styled.div`
   float: right;
   padding: 15px 0px;
-  display: block;
-  height: 25px;
-  width: 56.81px;
-  background-size: contain;
+  .header-pic {
+    height: 25px;
+    width: 56.81px;
+    background: url(${vipPic});
+    background-size: contain;
+  }
 `; 
 
 export const SearWrapper = styled.div`
